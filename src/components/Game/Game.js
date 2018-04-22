@@ -4,23 +4,27 @@ import Card from "../Card";
 import Header from "../Header";
 import Hero from '../Hero';
 
+
 class Game extends Component {
 	state = {
 		score: 0,
 		highScore: 0,
-		cards: []
+		cards: [],
+		show: true
 	};
 
 	componentDidMount() {
 		this.setState({cards: CardList});
+		
 	}
+
 
 	randomize = () => {
 		let tempCards = this.state.cards.slice();
 	    
-	    for (let i = tempCards.length-1; i >= 0; i--)
+	    for (let i = tempCards.length-1; i > 0; i--)
 		{
-			let randomIndex = Math.floor(Math.random()*(i) +1);
+			let randomIndex = Math.floor(Math.random()*(i-1));
 			
 			[tempCards[i], tempCards[randomIndex]] = [tempCards[randomIndex],tempCards[i]];
 		}
@@ -55,7 +59,8 @@ class Game extends Component {
 		
 		return (
 			<div className="container">
-			<Hero score={this.state.score} highScore={this.state.highScore} />
+			
+          	<Hero score={this.state.score} highScore={this.state.highScore} />
          	<Card cards={this.randomize()} clickCard={this.clickCard} />
          	</div>
 		);

@@ -3,8 +3,9 @@ import Game from './components/Game';
 import './App.css';
 
 const App = () => (
-  <Game />
- 
+  	
+  	<Game />
+ 	
 );
 
 export default App;
